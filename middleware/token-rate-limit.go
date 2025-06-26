@@ -15,6 +15,7 @@ import (
 const (
 	TokenRateLimitCountMark        = "TRRL"
 	TokenRateLimitSuccessCountMark = "TRRLS"
+	timeFormat                     = "2006-01-02 15:04:05"
 )
 
 func tokenCheckRedisRateLimit(ctx context.Context, rdb *redis.Client, key string, maxCount int, duration int64) (bool, error) {
@@ -101,8 +102,7 @@ func tokenMemoryRateLimitHandler(duration int64, totalMaxCount, successMaxCount 
 			c.Abort()
 			return
 		}
-		checkKey := successKey + "_check"
-		if !inMemoryRateLimiter.Request(checkKey, successMaxCount, duration) {
+		if !inMemoryRateLimiter.Request(successKey, successMaxCount, duration) {
 			c.Status(http.StatusTooManyRequests)
 			c.Abort()
 			return
