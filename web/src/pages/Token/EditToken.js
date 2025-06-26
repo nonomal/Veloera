@@ -422,27 +422,36 @@ const EditToken = (props) => {
           </div>
           {rate_limit_enabled && (
             <>
-              <InputNumber
-                style={{ marginTop: 8 }}
-                label={`${t('限制周期')}(${t('秒')})`}
-                name='rate_limit_period'
-                onChange={(v) => handleInputChange('rate_limit_period', v)}
-                value={rate_limit_period}
-              />
-              <InputNumber
-                style={{ marginTop: 8 }}
-                label={t('周期内请求限制')}
-                name='rate_limit_count'
-                onChange={(v) => handleInputChange('rate_limit_count', v)}
-                value={rate_limit_count}
-              />
-              <InputNumber
-                style={{ marginTop: 8 }}
-                label={t('周期内请求成功限制')}
-                name='rate_limit_success'
-                onChange={(v) => handleInputChange('rate_limit_success', v)}
-                value={rate_limit_success}
-              />
+              <div style={{ marginTop: 8 }}>
+                <label htmlFor='rate_limit_period'>{`${t('限制周期')}(${t('秒')})`}</label>
+                <InputNumber
+                  id='rate_limit_period'
+                  name='rate_limit_period'
+                  onChange={(v) => handleInputChange('rate_limit_period', v)}
+                  value={rate_limit_period}
+                  style={{ width: '100%', marginTop: '4px' }}
+                />
+              </div>
+              <div style={{ marginTop: 8 }}>
+                <label htmlFor='rate_limit_count'>{t('周期内请求限制')}</label>
+                <InputNumber
+                  id='rate_limit_count'
+                  name='rate_limit_count'
+                  onChange={(v) => handleInputChange('rate_limit_count', v)}
+                  value={rate_limit_count}
+                  style={{ width: '100%', marginTop: '4px' }}
+                />
+              </div>
+              <div style={{ marginTop: 8 }}>
+                <label htmlFor='rate_limit_success'>{t('周期内请求成功限制')}</label>
+                <InputNumber
+                  id='rate_limit_success'
+                  name='rate_limit_success'
+                  onChange={(v) => handleInputChange('rate_limit_success', v)}
+                  value={rate_limit_success}
+                  style={{ width: '100%', marginTop: '4px' }}
+                />
+              </div>
             </>
           )}
           <Divider />
